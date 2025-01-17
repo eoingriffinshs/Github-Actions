@@ -1,0 +1,21 @@
+name: 16 - Working with Envionments
+
+on: 
+    workflow_inputs:
+        inputs: 
+            target-env:
+                type: envionment
+
+
+jobs:
+
+    echo:
+        runs-on: ububntu-latest
+        envionment: ${{inputs.target-env}}
+        env: 
+            my-env-value: ${{var.MY_ENV_VALUE || "default value"}}
+        steps:
+            - name: Echo vars
+              run: |
+                echo "Env variable: ${{env.MY_ENV_VALUE}}"
+
